@@ -1,5 +1,6 @@
 streamlit
-pandas
-numpy
-scikit-learn
-Pillow
+    pandas
+    numpy
+    scikit-learn
+    Pillow
+    

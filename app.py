@@ -3,6 +3,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle
+import joblib
 
 # -----------------------
 # Cargar datos y modelo
@@ -12,8 +13,7 @@ def cargar_modelos():
     df_model = pd.read_pickle("df_model.pkl")
     df_original = pd.read_pickle("df_original.pkl")
     X_latent_deep = np.load("X_latent_deep.npy")
-    with open("knn_deep.pkl", "rb") as f:
-        knn_deep = pickle.load(f)
+    knn_deep = joblib.load("knn_deep.joblib")
     return df_model, df_original, X_latent_deep, knn_deep
 
 df_model, df_original, X_latent_deep, knn_deep = cargar_modelos()
