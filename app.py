@@ -3,7 +3,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle
-import joblib
 
 # -----------------------
 # Cargar datos y modelo
@@ -13,7 +12,8 @@ def cargar_modelos():
     df_model = pd.read_pickle("df_model.pkl")
     df_original = pd.read_pickle("df_original.pkl")
     X_latent_deep = np.load("X_latent_deep.npy")
-    knn_deep = joblib.load("knn_deep.joblib")
+    with open("knn_deep.pkl", "rb") as f:
+        knn_deep = pickle.load(f)
     return df_model, df_original, X_latent_deep, knn_deep
 
 df_model, df_original, X_latent_deep, knn_deep = cargar_modelos()
@@ -62,7 +62,11 @@ df_kneighbors = get_recommendations(selected_anime_id)
 anime = df_kneighbors.iloc[0]
 st.markdown(f"### Recomendaciones basadas en: [{anime['name']}]({anime['anime_url']}) (ID: {anime['anime_id']})")
 st.image(anime['image_url'], width=150)
-st.caption(f"⭐ Rating: {anime['rating']} | 💯 Score: {anime['score']} (votos: {int(anime['scored_by'])})")
+score = f"{anime['score']:.2f}" if pd.notnull(anime['score']) else "N/D"
+votos = f"{int(anime['scored_by']):,}" if pd.notnull(anime['scored_by']) else "N/D"
+rating = anime['rating'] if pd.notnull(anime['rating']) else "N/D"
+ranking = f"{int(anime['rank'])}" if pd.notnull(anime['rank']) else "N/D"
+st.caption(f"🏆 Ranking: {ranking} | 💯 Puntuación: {score} (votos: {votos}) | 🔞 Clasificación: {rating}")
 
 # Mostrar animes recomendados
 st.markdown("### Animes recomendados:")
@@ -78,12 +82,10 @@ with col1:
     for i, row in df_estrenados.iterrows():
         st.markdown(f"**{i}. [{row['name']}]({row['anime_url']}) (ID: {row['anime_id']})**")
         st.image(row['image_url'], width=120)
-
         score = f"{row['score']:.2f}" if pd.notnull(row['score']) else "N/D"
         votos = f"{int(row['scored_by']):,}" if pd.notnull(row['scored_by']) else "N/D"
         rating = row['rating'] if pd.notnull(row['rating']) else "N/D"
         ranking = f"{int(row['rank'])}" if pd.notnull(row['rank']) else "N/D"
-
         st.caption(f"🏆 Ranking: {ranking} | 💯 Puntuación: {score} (votos: {votos}) | 🔞 Clasificación: {rating}")
         st.markdown("---")
 
@@ -95,11 +97,9 @@ with col2:
     for i, row in df_upcoming.iterrows():
         st.markdown(f"**{i}. [{row['name']}]({row['anime_url']}) (ID: {row['anime_id']})**")
         st.image(row['image_url'], width=120)
-
         score = f"{row['score']:.2f}" if pd.notnull(row['score']) else "N/D"
         votos = f"{int(row['scored_by']):,}" if pd.notnull(row['scored_by']) else "N/D"
         rating = row['rating'] if pd.notnull(row['rating']) else "N/D"
         ranking = f"{int(row['rank'])}" if pd.notnull(row['rank']) else "N/D"
-
         st.caption(f"🏆 Ranking: {ranking} | 💯 Puntuación: {score} (votos: {votos}) | 🔞 Clasificación: {rating}")
         st.markdown("---")
