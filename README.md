@@ -19,13 +19,13 @@ Incluye:
 
 CONTENIDO DEL REPOSITORIO
 -----------------------------------------------------------------------------------------------------------------
-TFM_Nerea_Freijeiro.rar
- - TFM_Nerea_Freijeiro.pdf                --> Desarrollo del proyecto.	
- - TFM_Nerea_Freijeiro_notebook.ipynb     --> Jupyter Notebook con análisis, preprocesado, modelado y evaluación.
+- TFM_Nerea_Freijeiro.rar
+   - TFM_Nerea_Freijeiro.pdf                --> Desarrollo del proyecto.	
+   - TFM_Nerea_Freijeiro_notebook.ipynb     --> Jupyter Notebook con análisis, preprocesado, modelado y evaluación.
  - TFM_Nerea_Freijeiro_notebook.html    	--> Mismo Jupyter Notebook en formato html.
  - top_anime_dataset.csv      		        --> Dataset principal (15.000 animes)
  - TFM_Nerea_Freijeiro_Streamlit.html	    --> Aplicación web Streamlit en formato html.
-Streamlit_files
+- Streamlit_files
 - app.py                     		          --> Script de la aplicación web Streamlit.                                	
 - df_models.pkl               		        --> Modelos entrenados y ficheros auxiliares necesarios para Streamlit.
 - df_original.pkl
