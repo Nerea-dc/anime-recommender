@@ -36,7 +36,7 @@ CONTENIDO DEL REPOSITORIO
 CÓMO EJECUTAR EL PROYECTO LOCALMENTE
 -----------------------------------------------------------
 1. Clonar el repositorio:
-   git clone https://gitlab.com/<usuario>/<repositorio>.git
+   git clone https://github.com/Nerea-dc/anime-recommender
 
 2. Abrir la terminal Anaconda (Anaconda Prompt)
 
